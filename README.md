@@ -12,7 +12,7 @@ Node 환경과 Web 환경에서 사전에 준비해야하는 작업이 있으므
 `NPM` 설치 패키지 매니저를 통해 설치합니다.
 
 ```bash
-npm install @sym/tools
+npm install sym-tools
 ```
 
 ## 사용방법
