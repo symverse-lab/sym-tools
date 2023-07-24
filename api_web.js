@@ -80,6 +80,14 @@ function recover(hexMessage, hexV, hexR, hexS) {
   }
 }
 
+function recoverFromRawTx(hexRawTx) {
+  if (window.transaction) {
+    return window.transaction.recoverFromRawTx(hexRawTx);
+  } else {
+    throw new Error("Transaction API not found");
+  }
+}
+
 // utils
 function toValueString(hexValue, srcRadix, dstRadix) {
   if (window.utils) {
@@ -133,7 +141,8 @@ exports.transaction = {
   composeSct22Transfer: composeSct22Transfer,
   parseRawTx: parseRawTx,
   parseSct: parseSct,
-  recover: recover
+  recover: recover,
+  recoverFromRawTx: recoverFromRawTx
 }
 exports.utils = {
   toValueString: toValueString,

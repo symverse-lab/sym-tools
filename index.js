@@ -11,6 +11,7 @@ let composeSct22Transfer;
 let parseRawTx;
 let parseSct;
 let recover;
+let recoverFromRawTx;
 
 // utils
 let toValueString;
@@ -39,6 +40,7 @@ let pubkeyHash;
       parseRawTx = web.transaction.parseRawTx;
       parseSct = web.transaction.parseSct;
       recover = web.transaction.recover;
+      recoverFromRawTx = web.transaction.recoverFromRawTx;
 
       // utils
       toValueString = web.utils.toValueString;
@@ -69,6 +71,7 @@ let pubkeyHash;
     parseRawTx = cli.transaction.parseRawTx;
     parseSct = cli.transaction.parseSct;
     recover = cli.transaction.recover;
+    recoverFromRawTx = cli.transaction.recoverFromRawTx;
 
     // utils
     toValueString = cli.utils.toValueString;
@@ -93,7 +96,8 @@ exports.transaction = {
   composeSct22Transfer,
   parseRawTx,
   parseSct,
-  recover
+  recover,
+  recoverFromRawTx
 }
 exports.utils = {
   toValueString,
