@@ -8,6 +8,9 @@ let composeSct;
 let composeSct20Transfer;
 let composeSct21Transfer;
 let composeSct22Transfer;
+let parseRawTx;
+let parseSct;
+let recover;
 
 // utils
 let toValueString;
@@ -33,6 +36,9 @@ let pubkeyHash;
       composeSct20Transfer = web.transaction.composeSct20Transfer;
       composeSct21Transfer = web.transaction.composeSct21Transfer;
       composeSct22Transfer = web.transaction.composeSct22Transfer;
+      parseRawTx = web.transaction.parseRawTx;
+      parseSct = web.transaction.parseSct;
+      recover = web.transaction.recover;
 
       // utils
       toValueString = web.utils.toValueString;
@@ -60,6 +66,9 @@ let pubkeyHash;
     composeSct20Transfer = cli.transaction.composeSct20Transfer;
     composeSct21Transfer = cli.transaction.composeSct21Transfer;
     composeSct22Transfer = cli.transaction.composeSct22Transfer;
+    parseRawTx = cli.transaction.parseRawTx;
+    parseSct = cli.transaction.parseSct;
+    recover = cli.transaction.recover;
 
     // utils
     toValueString = cli.utils.toValueString;
@@ -81,7 +90,10 @@ exports.transaction = {
   composeSct,
   composeSct20Transfer,
   composeSct21Transfer,
-  composeSct22Transfer
+  composeSct22Transfer,
+  parseRawTx,
+  parseSct,
+  recover
 }
 exports.utils = {
   toValueString,

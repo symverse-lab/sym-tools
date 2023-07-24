@@ -72,6 +72,14 @@ function parseSct(hexSctMethod) {
   }
 }
 
+function recover(hexMessage, hexV, hexR, hexS) {
+  if (window.transaction) {
+    return window.transaction.recover(hexMessage, hexV, hexR, hexS);
+  } else {
+    throw new Error("Transaction API not found");
+  }
+}
+
 // utils
 function toValueString(hexValue, srcRadix, dstRadix) {
   if (window.utils) {
@@ -124,7 +132,8 @@ exports.transaction = {
   composeSct21Transfer: composeSct21Transfer,
   composeSct22Transfer: composeSct22Transfer,
   parseRawTx: parseRawTx,
-  parseSct: parseSct
+  parseSct: parseSct,
+  recover: recover
 }
 exports.utils = {
   toValueString: toValueString,
