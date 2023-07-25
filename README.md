@@ -1,4 +1,4 @@
-# @sym/tools
+# sym-tools
 
 **Node와 Web 환경에서 SymVerse의 Transaction 작성과 SCT20/21/22 Method를 작성하는 기능을 제공합니다.**
 
