@@ -16,9 +16,9 @@ function combineMessage(hexMessage, hexV, hexR, hexS) {
 }
 
 // transaction
-function composeSendTransaction(from, hexNonce, hexGasPrice, hexGasLimit, to, hexValue, hexData, hexType, warrantNode, hexExtraData) {
+function composeSendTransaction(from, hexNonce, hexGasPrice, hexGasLimit, to, hexValue, hexData, hexType, warrantNode, hexExtraData, hexChainId, hexForkId) {
   if (window.transaction) {
-    return window.transaction.composeSendTransaction(from, hexNonce, hexGasPrice, hexGasLimit, to, hexValue, hexData, hexType, warrantNode, hexExtraData);
+    return window.transaction.composeSendTransaction(from, hexNonce, hexGasPrice, hexGasLimit, to, hexValue, hexData, hexType, warrantNode, hexExtraData, hexChainId, hexForkId);
   } else {
     throw new Error("Transaction API not found");
   }
@@ -72,17 +72,17 @@ function parseSct(hexSctMethod) {
   }
 }
 
-function recover(hexMessage, hexV, hexR, hexS) {
+function recover(hexMessage, hexV, hexR, hexS, hexChainId, hexForkId) {
   if (window.transaction) {
-    return window.transaction.recover(hexMessage, hexV, hexR, hexS);
+    return window.transaction.recover(hexMessage, hexV, hexR, hexS, hexChainId, hexForkId);
   } else {
     throw new Error("Transaction API not found");
   }
 }
 
-function recoverFromRawTx(hexRawTx) {
+function recoverFromRawTx(hexRawTx, hexChainId, hexForkId) {
   if (window.transaction) {
-    return window.transaction.recoverFromRawTx(hexRawTx);
+    return window.transaction.recoverFromRawTx(hexRawTx, hexChainId, hexForkId);
   } else {
     throw new Error("Transaction API not found");
   }

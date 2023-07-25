@@ -35,9 +35,9 @@ function combineMessage(hexMessage, hexV, hexR, hexS) {
 }
 
 // transaction
-function composeSendTransaction(from, hexNonce, hexGasPrice, hexGasLimit, to, hexValue, hexData, hexType, warrantNode, hexExtraData) {
+function composeSendTransaction(from, hexNonce, hexGasPrice, hexGasLimit, to, hexValue, hexData, hexType, warrantNode, hexExtraData, hexChainId, hexForkId) {
   if (checkDartRuntime()) {
-    const result = execSync(`dart ${modulePath}/sym-tools-cli.dill composeSendTransaction ${from} ${hexNonce} ${hexGasPrice} ${hexGasLimit} ${to} ${hexValue} ${hexData} ${hexType} ${warrantNode} ${hexExtraData}`);
+    const result = execSync(`dart ${modulePath}/sym-tools-cli.dill composeSendTransaction ${from} ${hexNonce} ${hexGasPrice} ${hexGasLimit} ${to} ${hexValue} ${hexData} ${hexType} ${warrantNode} ${hexExtraData} ${hexChainId} ${hexForkId}`);
     // console.log(`result: ${result}`);
     const resultString = result.toString('utf8');
     return JSON.parse(resultString);
@@ -112,9 +112,9 @@ function parseSct(hexSctMethod) {
   }
 }
 
-function recover(hexMessage, hexV, hexR, hexS) {
+function recover(hexMessage, hexV, hexR, hexS, hexChainId, hexForkId) {
   if (checkDartRuntime()) {
-    const result = execSync(`dart ${modulePath}/sym-tools-cli.dill recover ${hexMessage} ${hexV} ${hexR} ${hexS}`);
+    const result = execSync(`dart ${modulePath}/sym-tools-cli.dill recover ${hexMessage} ${hexV} ${hexR} ${hexS} ${hexChainId} ${hexForkId}`);
     // console.log(`result: ${result}`);
     const resultString = result.toString('utf8');
     return JSON.parse(resultString);
@@ -123,9 +123,9 @@ function recover(hexMessage, hexV, hexR, hexS) {
   }
 }
 
-function recoverFromRawTx(hexRawTx) {
+function recoverFromRawTx(hexRawTx, hexChainId, hexForkId) {
   if (checkDartRuntime()) {
-    const result = execSync(`dart ${modulePath}/sym-tools-cli.dill recoverFromRawTx ${hexRawTx}`);
+    const result = execSync(`dart ${modulePath}/sym-tools-cli.dill recoverFromRawTx ${hexRawTx} ${hexChainId} ${hexForkId}`);
     // console.log(`result: ${result}`);
     const resultString = result.toString('utf8');
     return JSON.parse(resultString);
