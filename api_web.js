@@ -1,7 +1,7 @@
 // hasher
-function hashMessage(hexMessage) {
+function hashMessage(hexMessage, chainId, forkId) {
   if (window.hahser) {
-    return window.hahser.hashMessage(hexMessage);
+    return window.hahser.hashMessage(hexMessage, chainId, forkId);
   } else {
     throw new Error("Hasher API not found");
   }
@@ -129,7 +129,7 @@ function utf8ToString(hexPublicKey) {
   }
 }
 
-exports.hahser = {
+exports.hasher = {
   hashMessage: hashMessage,
   combineMessage: combineMessage
 }

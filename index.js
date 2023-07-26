@@ -28,8 +28,8 @@ let pubkeyHash;
       const web = require('./api_web');
 
       // hahser
-      hashMessage = web.hahser.hashMessage;
-      combineMessage = web.hahser.combineMessage;
+      hashMessage = web.hasher.hashMessage;
+      combineMessage = web.hasher.combineMessage;
 
       // transaction
       composeSendTransaction = web.transaction.composeSendTransaction;
@@ -59,8 +59,8 @@ let pubkeyHash;
     const cli = require('./api_cli');
 
     // hahser
-    hashMessage = cli.hahser.hashMessage;
-    combineMessage = cli.hahser.combineMessage;
+    hashMessage = cli.hasher.hashMessage;
+    combineMessage = cli.hasher.combineMessage;
 
     // transaction
     composeSendTransaction = cli.transaction.composeSendTransaction;
@@ -84,7 +84,7 @@ let pubkeyHash;
   }
 })();
 
-exports.hahser = {
+exports.hasher = {
   hashMessage,
   combineMessage
 }

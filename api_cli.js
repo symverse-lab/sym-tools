@@ -12,9 +12,9 @@ function checkDartRuntime() {
 }
 
 // hasher
-function hashMessage(hexMessage) {
+function hashMessage(hexMessage, hexChainId, hexForkId) {
   if (checkDartRuntime()) {
-    const result = execSync(`dart ${modulePath}/sym-tools-cli.dill hashMessage ${hexMessage}`);
+    const result = execSync(`dart ${modulePath}/sym-tools-cli.dill hashMessage ${hexMessage} ${hexChainId} ${hexForkId}`);
     // console.log(`result: ${result}`);
     const resultString = result.toString('utf8');
     return JSON.parse(resultString);
@@ -48,7 +48,7 @@ function composeSendTransaction(from, hexNonce, hexGasPrice, hexGasLimit, to, he
 
 function composeSct(sctType, methodName, params) {
   if (checkDartRuntime()) {
-    const result = execSync(`dart ${modulePath}/sym-tools-cli.dill composeSct ${sctType} ${methodName} ${params}`);
+    const result = execSync(`dart ${modulePath}/sym-tools-cli.dill composeSct ${sctType} ${methodName} '${JSON.stringify(params)}'`);
     // console.log(`result: ${result}`);
     const resultString = result.toString('utf8');
     return JSON.parse(resultString);
@@ -139,7 +139,7 @@ function toValueString(hexValue, srcRadix, dstRadix) {
   if (checkDartRuntime()) {
     const result = execSync(`dart ${modulePath}/sym-tools-cli.dill toValueString ${hexValue} ${srcRadix} ${dstRadix}`);
     // console.log(`result: ${result}`);
-    return result.toString('utf8');
+    return result.toString('utf8').trim();
   } else {
     throw new Error("Dart runtime not found");
   }
@@ -149,7 +149,7 @@ function stringToUtf8(str) {
   if (checkDartRuntime()) {
     const result = execSync(`dart ${modulePath}/sym-tools-cli.dill stringToUtf8 ${str}`);
     // console.log(`result: ${result}`);
-    return result.toString('utf8');
+    return result.toString('utf8').trim();
   } else {
     throw new Error("Dart runtime not found");
   }
@@ -159,7 +159,7 @@ function utf8ToString(hexStr) {
   if (checkDartRuntime()) {
     const result = execSync(`dart ${modulePath}/sym-tools-cli.dill utf8ToString ${hexStr}`);
     // console.log(`result: ${result}`);
-    return result.toString('utf8');
+    return result.toString('utf8').trim();
   } else {
     throw new Error("Dart runtime not found");
   }
@@ -167,9 +167,9 @@ function utf8ToString(hexStr) {
 
 function toRlp(hexParams) {
   if (checkDartRuntime()) {
-    const result = execSync(`dart ${modulePath}/sym-tools-cli.dill toRlp ${hexParams}`);
+    const result = execSync(`dart ${modulePath}/sym-tools-cli.dill toRlp '${JSON.stringify(hexParams)}'`);
     // console.log(`result: ${result}`);
-    return result.toString('utf8');
+    return result.toString('utf8').trim();
   } else {
     throw new Error("Dart runtime not found");
   }
@@ -179,13 +179,13 @@ function pubkeyHash(hexPublicKey) {
   if (checkDartRuntime()) {
     const result = execSync(`dart ${modulePath}/sym-tools-cli.dill pubkeyHash ${hexPublicKey}`);
     // console.log(`result: ${result}`);
-    return result.toString('utf8');
+    return result.toString('utf8').trim();
   } else {
     throw new Error("Dart runtime not found");
   }
 }
 
-exports.hahser = {
+exports.hasher = {
   hashMessage: hashMessage,
   combineMessage: combineMessage
 }
