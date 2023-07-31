@@ -134,6 +134,17 @@ function recoverFromRawTx(hexRawTx, hexChainId, hexForkId) {
   }
 }
 
+function _signMessage(hexCredentials, hexMessage, hexChainId, hexForkId) {
+  if (checkDartRuntime()) {
+    const result = execSync(`dart ${modulePath}/sym-tools-cli.dill _signMessage ${hexCredentials} ${hexMessage} ${hexChainId} ${hexForkId}`);
+    // console.log(`result: ${result}`);
+    const resultString = result.toString('utf8');
+    return JSON.parse(resultString);
+  } else {
+    throw new Error("Dart runtime not found");
+  }
+}
+
 // utils
 function toValueString(hexValue, srcRadix, dstRadix) {
   if (checkDartRuntime()) {
@@ -198,7 +209,8 @@ exports.transaction = {
   parseRawTx: parseRawTx,
   parseSct: parseSct,
   recover: recover,
-  recoverFromRawTx: recoverFromRawTx
+  recoverFromRawTx: recoverFromRawTx,
+  _signMessage: _signMessage
 }
 exports.utils = {
   toValueString: toValueString,

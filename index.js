@@ -12,6 +12,7 @@ let parseRawTx;
 let parseSct;
 let recover;
 let recoverFromRawTx;
+let _signMessage;
 
 // utils
 let toValueString;
@@ -72,6 +73,7 @@ let pubkeyHash;
     parseSct = cli.transaction.parseSct;
     recover = cli.transaction.recover;
     recoverFromRawTx = cli.transaction.recoverFromRawTx;
+    _signMessage = cli.transaction._signMessage;
 
     // utils
     toValueString = cli.utils.toValueString;
@@ -97,7 +99,8 @@ exports.transaction = {
   parseRawTx,
   parseSct,
   recover,
-  recoverFromRawTx
+  recoverFromRawTx,
+  _signMessage
 }
 exports.utils = {
   toValueString,
